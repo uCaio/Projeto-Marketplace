@@ -1,0 +1,18 @@
+.alert-error{
+    width: 180px;
+    float: right;
+    background-color:#f44336 ;
+    color: #000;
+    padding: 05px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
+    animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    80% {opacity: 1;}
+    100% {opacity: 0; display: none;}
+}
