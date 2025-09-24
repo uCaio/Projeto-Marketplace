@@ -65,7 +65,7 @@
                                         min="1">
                                     <button type="submit">Atualizar</button>
                                 </form>
-                                <form method="POST" action="/carrinho/remover/<%= produto.id%>">
+                                <form method="POST" action="/carrinho/remover/<%= produto.id %>/<%= produto.tamanho %>">
                                     <button type="submit" class="remove-btn">Remover</button>
                                 </form>
                                 <p><strong>Subtotal:</strong> R$ <%= subtotal.toFixed(2) %>

@@ -1,5 +1,5 @@
 const { Produto } = require('../config/db').models;
-const {Estoque} = require('../config/db').models;
+const { Estoque } = require('../config/db').models;
 
 let carrinho = [];
 
@@ -30,7 +30,7 @@ const adicionarAoCarrinho = async (req, res) => {
         const imagemPrincipal = produto.imagens ? produto.imagens.split(',')[0] : "sem-imagem-disponivel.jpg";
 
         // Verifica se já existe no carrinho com mesmo ID e tamanho
-        const itemExistente = carrinho.find(item => item.id == produto.id && item.tamanho === tamanho);
+        const itemExistente = carrinho.find(item => item.id == produto.produtoID && item.tamanho === tamanho);
 
         if (itemExistente) {
             itemExistente.quantidade += 1;
@@ -45,7 +45,7 @@ const adicionarAoCarrinho = async (req, res) => {
                 quantidade: 1,
             });
         }
-        
+
         res.redirect('/carrinho');
     } catch (error) {
         console.log(error);
@@ -111,8 +111,11 @@ const atualizarQuantidade = (req, res) => {
 
 const removerItem = (req, res) => {
     try {
-        const { produtoId } = req.params;
-        carrinho = carrinho.filter(item => item.id != produtoId);
+        const { produtoId, tamanho } = req.params;
+        console.log(carrinho);
+        carrinho = carrinho.filter(item => {
+            return !(item.id == produtoId && item.tamanho == tamanho)
+        })
         res.redirect('/carrinho');
     } catch (error) {
         console.log(error);
