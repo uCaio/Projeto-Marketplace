@@ -9,33 +9,29 @@
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/navBar.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/formLogin.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/alert.css'>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
     <script src='/javascripts/sideBar.js' defer></script>
     <script src='/javascripts/alert.js' defer></script>
 </head>
 
 <body>
     <div id="nav-container">
-        <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
+        <header id="header"><a class="open-btn" href="/home">Tênis Zone</a></header>
     </div>
     <h2 id="login">Login</h2>
     <form action="/login" method="POST">
         <div class="form-container">
-            <div class="label-container">
-                <label for="email">Email:</label>
-            </div>
-            <div class="input-container">
-                <input type="text" name="email" placeholder="Digite seu email...">
-            </div>
-            <div class="label-container">
-                <label for="senha">Senha:</label>
-            </div>
-            <div class="input-container">
-                <input type="password" name="senha" placeholder="Digite sua senha...">
-            </div>
-            <div class="label-container">
-                <p>Não possui conta? <a href="/cadastro">Clique aqui</a></p>
-            </div>
+          <div class="coolinput">
+            <label for="input" class="text">Email:</label>
+            <input type="text" placeholder="Digite seu email..." name="email" class="input">
+          </div>
+          <div class="coolinput">
+            <label for="input" class="text">Senha:</label>
+            <input type="password" placeholder="Digite sua senha" name="senha" class="input">
+          </div>
+            <p class="link">Não possui conta? <strong><a href="/cadastro">Clique aqui</a></p></strong>
             <button class="button-login">Login</button>
         </div>
     </form>

@@ -33,6 +33,10 @@ module.exports = {
       quantidade: {
         type: Sequelize.INTEGER,
         allowNull: false
+      },
+      tamanho:{
+        type: Sequelize.INTEGER,
+        allowNull: false
       }
    })
   },

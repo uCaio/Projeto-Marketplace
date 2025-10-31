@@ -56,10 +56,12 @@ input[type="number"] {
 }
 
 button {
-    width: 80px;
-    padding: 10px 05px !important;
+    width: 100px;
+    padding: 10px 10px !important;
     margin: 5px 5px 0 0;
-    background-color: #007bff;
+    background-color: #52c4db;
+    font-size: 15px;
+    font-weight: bold;
     color: white;
     border: none;
     border-radius: 6px;
@@ -67,11 +69,13 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #45a0b3;
 }
 
 .remove-btn {
+    width: 40px;
     background-color: #dc3545;
+    float: right;
 }
 
 .remove-btn:hover {
@@ -94,6 +98,10 @@ button:hover {
 
 #info-container {
     text-align: right;
+}
+
+#total-value{
+    margin-top: 20px;
 }
 
 .empty {
@@ -119,9 +127,27 @@ button:hover {
 }
 
 input[type="number"] {
-    width: 60px;
+    width: 50px;
     padding: 10px;
     border: 1px solid #000;
     border-radius: 6px;
     cursor:pointer;
 }   
+
+.sidebar .close-btn:hover {
+  color: #000;
+  transition: 0.5s;
+}
+
+.sidebar .close-btn {
+  width: auto !important;
+  padding: 0 !important;
+  font-size: 24px !important;
+  background: none !important;
+  border: none !important;
+  color: white !important;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

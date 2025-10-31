@@ -11,8 +11,9 @@ module.exports = (sequelize) => {
         {
             compraID: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false},
             produtoID: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'produtos', key: 'produtoID' } },
-            clienteID: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'clientes', key: 'clienteID' } }
-            
+            clienteID: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'clientes', key: 'clienteID' } },
+            quantidade: {type: DataTypes.INTEGER, allowNull:false},
+            tamanho: {type: DataTypes.INTEGER, allowNull: false}
         },
         {
             sequelize,

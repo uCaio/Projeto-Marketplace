@@ -17,31 +17,42 @@
 <body>
     <nav id="nav-container">
         <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
-        <% if (!cliente) { %>
-            <a href="/login"><i class="bi bi-person-circle"></i></a>
-            <% } else { %>
-                <a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a>
-                <% } %>
+        <ul class="nav-links">
+            <% if (!cliente) { %>
+                <li><a href="/login"><i class="bi bi-person-circle"></i></a></li>
+             <% } else { %>
+                <li><a href="/carrinho/"><i class="bi bi-cart2"></i></a></li>
+                <li><a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a></li>
+            <% } %>
+        </ul>
     </nav>
+
     <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">x</button>
         <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
-        <% if(!cliente){ %>
-            <a href="#">Masculino</a>
-            <a href="#">Feminino</a>
-            <% }else{ %>
-                <a href="/logout" class="logout-button"><i class="bi bi-box-arrow-right"></i></a>
-                <a href="#">Masculino</a>
-                <a href="#">Feminino</a>
-                <% } %>
+        <button class="close-btn" onclick="toggleSidebar()">x</button>
+
+        <ul class="sidebar-links">
+            <% if(!cliente){ %>
+                <li><a href="#">Masculino</a></li>
+                <li><a href="#">Feminino</a></li>
+            <% } else { %>
+                <li><a href="#">Masculino</a></li>
+                <li><a href="#">Feminino</a></li>
+                <li><a href="/minhasCompras">Minhas compras</a></li>
+            <% } %>
+        </ul>
+        <% if (cliente) { %>
+            <div class="container-links">
+                <li><a href="/logout" class="logout-button"><i class="bi bi-box-arrow-right"></i></a></li>
+            </div>
+        <% } %>
     </div>
 
     <h2 id="myAccount">Minha conta</h2>
-
     <form action="/minhaConta/<%= cliente.clienteID %>?_method=PUT" method="POST">
         <div class="form-container">
             <div class="label-container">
-                <label for="nome">Nome:</label>
+                <label for="nome">Nome:</span></label>
             </div>
             <div class="input-container">
                 <input type="text" name="nome" value="<%= cliente.nome %>">
@@ -72,7 +83,7 @@
                 <label for="senha">Senha:</label>
             </div>
             <div class="input-container">
-                <input type="password" name="senha" value="<%= cliente.senha %>">
+                <input type="password" name="senha" value="">
             </div>
 
             <div class="label-container">

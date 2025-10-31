@@ -25,6 +25,7 @@ const myAccountRoutes = require('./routes/myAccountRoutes');
 const logOutRoutes = require('./routes/logOutRoutes');
 const productPageRoutes = require('./routes/productPageRoutes');
 const shoppingCartRoutes = require('./routes/shoppingCartRoutes');
+const myPurchaseRoutes = require('./routes/myPurchaseRoutes')
 
 
 app.use('/', homeRoutes);
@@ -34,6 +35,7 @@ app.use('/', myAccountRoutes);
 app.use('/', logOutRoutes);
 app.use('/', productPageRoutes);
 app.use('/', shoppingCartRoutes);
+app.use('/', myPurchaseRoutes);
 
 
 // View Engine

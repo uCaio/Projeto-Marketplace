@@ -59,15 +59,20 @@ input[type="date"] {
 
 
 .edit-button {
+    display: block;
     width: 100px;
-    height: 40px;
-    margin: 10px 175px;
-    border: 1px solid;
-    border-radius: 20px;
+    padding: 10px 10px;
+    margin: 15px auto;
+    background-color: #52c4db;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
 }
 
 .edit-button:hover {
-    background-color: #52c4db;
-    transition: 0.7s;
+    background-color: #4199ab;
+    transition: 0.5s;
 }

@@ -1,114 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Carrinho de Compras</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/stylesheets/shoppingCart.css">
-    <link rel="stylesheet" href="/stylesheets/navBar.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <script src="/javascripts/sideBar.js" defer></script>
-    <script src="/javascripts/cep.js" defer></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Carrinho de Compras</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body>
-    <nav id="nav-container">
-        <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
-        <% if (!cliente) { %>
-            <a href="/login"><i class="bi bi-person-circle"></i></a>
-            <% } else { %>
-                <a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a>
-                <% } %>
-    </nav>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">x</button>
-        <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
-        <% if (!cliente) { %>
-            <a href="#">Masculino</a>
-            <a href="#">Feminino</a>
-            <% } else { %>
-                <a href="/logout" class="logout-button"><i class="bi bi-box-arrow-right"></i></a>
-                <a href="#">Masculino</a>
-                <a href="#">Feminino</a>
-                <% } %>
-    </div>
-    <main class="cart-container">
-        <h2>Carrinho de Compras</h2>
-        <% if (carrinho.length===0) { %>
-            <p class="empty">Seu carrinho está vazio.</p>
-            <% } else { %>
-                <% let totalGeral=0; %>
-                    <% carrinho.forEach(produto=> {
-                        const subtotal = produto.preco * produto.quantidade;
-                        totalGeral += subtotal;
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/shoppingCart.css">
+  <link rel="stylesheet" href="/stylesheets/navBar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-                        let primeiraImagem = 'sem-imagem-disponivel.jpg';
-                        if (produto.imagens && produto.imagens.trim().length > 0) {
-                        primeiraImagem = produto.imagens.split(',')[0].trim();
-                        }
-                        %>
-                        <div class="cart-item">
-                            <img src="/images/<%= produto.pasta_imagem %>/<%= produto.imagem %>"
-                                alt="<%= produto.nome %>">
-                            <div class="item-details">
-                                <h3>
-                                    <%= produto.nome %>
-                                </h3>
-                                <p>Preço: R$ <%= produto.preco %>
-                                </p>
-                                <p>Tamanho: <%= produto.tamanho %>
-                                </p>
-                                <form method="POST" action="/carrinho/atualizar">
-                                    <input type="hidden" name="produtoId" value="<%= produto.id%>">
-                                    <label for="quantidade">Quantidade:</label>
-                                    <input type="number" name="novaQuantidade" value="<%= produto.quantidade %>"
-                                        min="1">
-                                    <button type="submit">Atualizar</button>
-                                </form>
-                                <form method="POST" action="/carrinho/remover/<%= produto.id %>/<%= produto.tamanho %>">
-                                    <button type="submit" class="remove-btn">Remover</button>
-                                </form>
-                                <p><strong>Subtotal:</strong> R$ <%= subtotal.toFixed(2) %>
-                                </p>
-                            </div>
-                        </div>
-                        <% }) %>
-                            <div class="cart-summary">
-                                <form method="get" action="." id="box-cep">
-                                    <strong>
-                                        <p>Calcular Frete:</p>
-                                    </strong>
-                                    <label for="cep">Cep:</label>
-                                    <input name="cep" type="text" id="cep" value="" class="summary-inputs" maxlength="9"
-                                        onblur="pesquisacep(this.value);" /><br />
-                                    <label>Rua:
-                                        <input name="rua" type="text" id="rua" / class="summary-inputs"></label><br />
-                                    <label>Bairro:
-                                        <input name="bairro" type="text" id="bairro" /
-                                            class="summary-inputs"></label><br />
-                                    <label>Cidade:
-                                        <input name="cidade" type="text" id="cidade" /
-                                            class="summary-inputs"></label><br />
-                                    <label>Estado:
-                                        <input name="uf" type="text" id="uf" size="2"
-                                            class="summary-inputs" /></label><br />
-                                    <input name="ibge" type="hidden" id="ibge" size="8"
-                                        class="summary-inputs" /></label><br />
-                                    <button>Calcular</button>
-                                </form>
-                                <div id="info-container">
-                                    <p><strong>Total Geral:</strong> R$ <%= totalGeral.toFixed(2) %>
-                                    </p>
-                                    <form method="POST" action="/carrinho/limpar">
-                                        <button type="submit" class="clear-btn">Limpar Carrinho</button>
-                                    </form>
-                                    <form action="/carrinho/finalizar" method="POST">
-                                        <button type="submit" class="finish-btn">Finalizar Compra</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <% } %>
-    </main>
+  <script src="/javascripts/bootstrap.bundle.min.js" defer></script>
+  <script src="/javascripts/sideBar.js" defer></script>
+  <script src="/javascripts/cep.js" defer></script>
+
+</head>
 </body>
+  <nav id="nav-container">
+    <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
+    <ul class="nav-links">
+      <% if (!cliente) { %>
+        <li><a href="/login"><i class="bi bi-person-circle"></i></a></li>
+      <% } else { %>
+        <li><a href="/carrinho/"><i class="bi bi-cart2"></i></a></li>
+        <li><a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a></li>
+      <% } %>
+    </ul>
+  </nav>
 
+ <div class="sidebar" id="sidebar">
+        <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
+        <button class="close-btn" onclick="toggleSidebar()">x</button>
+
+        <ul class="sidebar-links">
+            <% if(!cliente){ %>
+                <li><a href="#">Masculino</a></li>
+                <li><a href="#">Feminino</a></li>
+            <% } else { %>
+                <li><a href="#">Masculino</a></li>
+                <li><a href="#">Feminino</a></li>
+                <li><a href="/minhasCompras">Minhas compras</a></li>
+            <% } %>
+        </ul>
+        <% if (cliente) { %>
+            <div class="container-links">
+                <li><a href="/logout" class="logout-button"><i class="bi bi-box-arrow-right"></i></a></li>
+            </div>
+        <% } %>
+  </div>
+
+  <main class="cart-container">
+    <h2>Carrinho de Compras</h2>
+
+    <% if (carrinho.length === 0) { %>
+      <p class="empty">Seu carrinho está vazio.</p>
+    <% } else { %>
+      <% let totalGeral = 0; %>
+      <% carrinho.forEach(produto => {
+          const subtotal = produto.preco * produto.quantidade;
+          totalGeral += subtotal;
+      %>
+        <div class="cart-item">
+          <img
+            src="/images/<%= produto.pasta_imagem %>/<%= produto.imagem %>"
+            alt="<%= produto.nome %>"
+          />
+          <div class="item-details">
+            <h3><%= produto.nome %></h3>
+            <p>Preço: R$ <%= Number(produto.preco).toFixed(2).replace(".", ",") %></p>
+            <p>Tamanho: <%= produto.tamanho %></p>
+
+            <form method="POST" action="/carrinho/atualizar">
+              <input type="hidden" name="produtoId" value="<%= produto.id %>">
+              <label for="quantidade">Quantidade:</label>
+              <input
+                type="number"
+                name="novaQuantidade"
+                value="<%= produto.quantidade %>"
+                min="1"
+              />
+              <button type="submit">Atualizar</button>
+            </form>
+          </div>
+
+          <div id="remove">
+            <form method="POST" action="/carrinho/remover/<%= produto.id %>/<%= produto.tamanho %>">
+              <button type="submit" class="remove-btn">X</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+
+      <div class="cart-summary">
+        <form method="POST" action="/carrinho/frete" id="box-cep">
+          <strong><p>Calcular Frete:</p></strong>
+
+          <label for="cep">CEP:</label>
+          <input
+            name="cep"
+            type="text"
+            id="cep"
+            maxlength="9"
+            class="summary-inputs"
+            onblur="pesquisacep(this.value);"
+          /><br />
+
+          <label>Rua:
+            <input name="rua" type="text" id="rua" class="summary-inputs">
+          </label><br />
+
+          <label>Bairro:
+            <input name="bairro" type="text" id="bairro" class="summary-inputs">
+          </label><br />
+
+          <label>Cidade:
+            <input name="cidade" type="text" id="cidade" class="summary-inputs">
+          </label><br />
+
+          <input name="uf" type="hidden" id="uf" class="summary-inputs">
+          <input name="ibge" type="hidden" id="ibge" class="summary-inputs">
+
+          <button type="submit">Calcular</button> 
+        </form>
+
+        <div id="info-container">
+          <form method="POST" action="/carrinho/limpar">
+            <button type="submit" class="clear-btn">Limpar Carrinho</button>
+          </form>
+
+          <form action="/carrinho/finalizar" method="POST">
+            <button type="submit" class="finish-btn">Finalizar Compra</button>
+          </form>
+
+          <% if (typeof valorFrete !== 'undefined') { %>
+            <p id="total-value">
+              <strong>Total com Frete:</strong> R$ <%= totalComFrete.toFixed(2) %>
+            </p>
+          <% } %>
+        </div>
+      </div>
+    <% } %>
+  </main>
+</body>
 </html>

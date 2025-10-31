@@ -17,4 +17,5 @@ router.get('/home', async (req, res) => {
         res.status(500).send("Erro no servidor.");
     }
 });
+
 module.exports = router;

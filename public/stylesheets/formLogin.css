@@ -2,7 +2,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+}
+
+
+body {
+   font-family: 'Bebas Neue', sans-serif;
 }
 
 #login {
@@ -22,21 +26,45 @@
     border-radius: 5px;
 }
 
-.label-container {
-    width: 300px;
-    margin: 10px 20px;
+/* From Uiverse.io by kamehame-ha */ 
+.coolinput {
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    position: static;
+    max-width: 240px;
 }
 
-.input-container {
-    width: 400px;
-    height: 30px;
-    margin: 0 auto;
+.coolinput label.text {
+  font-size: 0.75rem;
+  color: #52c4db;
+  font-weight: 700;
+  position: relative;
+  top: 0.5rem;
+  margin: 0 0 0 7px;
+  padding: 0 3px;
+  background: #fff;
+  width: fit-content;
+}
+
+.coolinput input[type=text], input[type=password].input {
+  padding: 11px 10px;
+  font-size: 0.75rem;
+  border: 2px solid #52c4db;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.coolinput input[type=text], input[type=password].input:focus {
+  outline: none;
 }
 
 input[type="text"] {
     width: 400px;
     height: 30px;
     padding: 05px;
+
     border-radius: 50px;
     border: 1px solid;
 }
@@ -49,18 +77,33 @@ input[type="password"] {
     border: 1px solid;
 }
 
+.link{
+    padding: 05px 10px;
+}
+
+.link a{
+    text-decoration: none;
+    color: #52c4db;
+}
+
 .button-login {
+    display: block;
     width: 100px;
-    height: 40px;
-    margin: 25px 180px;
-    border: 1px solid;
-    border-radius: 20px;
+    height: auto;
+    padding: 10px 10px;
+    margin: 40px auto;
+    background-color: #52c4db;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
 }
 
 .button-login:hover {
-    background-color: #52c4db;
-    transition: 0.7s;
+    background-color: #4199ab;
+    transition: 0.5s;
 }
 
 .label-container a {

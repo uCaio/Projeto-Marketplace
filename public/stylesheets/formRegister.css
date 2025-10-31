@@ -58,15 +58,22 @@ input[type="date"] {
 }
 
 .register-button {
+    display: block;
     width: 100px;
-    height: 40px;
-    margin: 10px 175px;
-    border: 1px solid;
-    border-radius: 20px;
+    padding: 10px 10px;
+    margin: 15px auto;
+    background-color: #52c4db;
+    color: white;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
 }
 
 .register-button:hover {
-    background-color: #52c4db;
-    transition: 0.7s;
+  background-color: #4199ab;
+  transition: 0.5s;
+}
+
+.required{
+    color: #ff0000;
 }

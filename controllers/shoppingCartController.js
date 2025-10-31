@@ -1,11 +1,20 @@
 const { Produto } = require('../config/db').models;
 const { Estoque } = require('../config/db').models;
+const { Cliente } = require('../config/db').models;
+const { Compra  } = require('../config/db').models
 
 let carrinho = [];
 
-const mostrarCarrinho = (req, res) => {
+const mostrarCarrinho = async (req, res) => {
     try {
-        res.render('shoppingCart', { carrinho, cliente: req.session.cliente, Produto, Estoque });
+        let cliente = null
+        if (req.session.clienteId) {
+            cliente = await Cliente.findByPk(req.session.clienteId);
+            res.render('shoppingCart', { carrinho, cliente, Produto, Estoque });
+        }
+        else {
+            return res.redirect("/login")
+        }
     } catch (error) {
         console.log(error);
         return res.status(500).send("Erro ao carregar o carrinho.");
@@ -56,6 +65,10 @@ const adicionarAoCarrinho = async (req, res) => {
 
 const confirmarCompra = async (req, res) => {
     try {
+        let cliente = null;
+        if(req.session.clienteId){
+            cliente = await Cliente.findByPk(req.session.clienteId);
+        }
         // Verifica se o carrinho está vazio
         if (carrinho.length === 0) {
             return res.status(400).send("O carrinho está vazio.");
@@ -74,15 +87,24 @@ const confirmarCompra = async (req, res) => {
             const estoque = await Estoque.findByPk(item.id);
             estoque.quantidade -= item.quantidade;
             await estoque.save();
+        }
 
-            // Aqui você pode salvar os detalhes da compra (opcional)
-            // Ex: await Pedido.create({ clienteId: req.session.cliente.id, produtoId: item.id, quantidade: item.quantidade, ... })
+        // Adiciona a compra na tabela de compras
+        for(let item of carrinho){
+            await Compra.create({
+                clienteID: cliente.clienteID,
+                produtoID: item.id,
+                quantidade: item.quantidade,
+                tamanho: item.tamanho,
+                preco: item.preco_pix
+            })
         }
 
         // Limpa o carrinho
         carrinho = [];
 
-        res.send("Compra finalizada com sucesso!");
+
+        res.render("purchaseCompleted", {cliente});
     } catch (error) {
         console.log(error);
         return res.status(500).send("Erro ao confirmar compra.");
@@ -109,6 +131,24 @@ const atualizarQuantidade = (req, res) => {
     }
 };
 
+const calcularFrete = (req,res)=>{
+    try{
+        const {cep} = req.body;
+        const valorFrete = Math.random() * 50;
+        const totalProdutos = carrinho.reduce((total, item) =>{
+            return total + (item.preco * item.quantidade)
+        }, 0)
+        const totalComFrete = totalProdutos + valorFrete;
+
+        res.render('shoppingCart',{
+            carrinho, Produto, Estoque, cliente: req.session.clienteId ?{ clienteID: req.session.clienteId} : null, valorFrete, totalComFrete
+        })
+    } catch(error){
+        console.log(error);
+        return res.status(500).send("Erro ao calcular frete")
+    }
+}
+
 const removerItem = (req, res) => {
     try {
         const { produtoId, tamanho } = req.params;
@@ -122,6 +162,7 @@ const removerItem = (req, res) => {
         return res.status(500).send("Erro ao remover item.");
     }
 };
+
 
 const limparCarrinho = (req, res) => {
     try {
@@ -139,5 +180,7 @@ module.exports = {
     atualizarQuantidade,
     removerItem,
     limparCarrinho,
-    confirmarCompra
+    confirmarCompra, 
+    calcularFrete,
 };
+

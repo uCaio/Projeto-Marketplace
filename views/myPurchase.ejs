@@ -3,16 +3,12 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Loja</title>
+    <title>Minhas Compras</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/home.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/navBar.css'>
+    <link rel="stylesheet" href="/stylesheets/myPurchase.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/bootstrap.min.css'>
-
-    <script src='/javascripts/slider-images.js' defer></script>
-    <script src='/javascripts/sideBar.js' defer></script>
-    <script src='/javascripts/bootstrap.bundle.min.js' defer></script>
+    <script src='/javascripts/sideBar.js'></script>
 </head>
 <body>
     <nav id="nav-container">
@@ -26,7 +22,8 @@
             <% } %>
         </ul>
     </nav>
-   <div class="sidebar" id="sidebar">
+
+    <div class="sidebar" id="sidebar">
         <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
         <button class="close-btn" onclick="toggleSidebar()">x</button>
 
@@ -48,27 +45,30 @@
         <% } %>
     </div>
 
-    <section id="products">
-        <% produto.forEach(p => { %>
-            <div class="product-container">
-                <div class="slider-container">
-                    <div class="slider">
-                        <% 
-                            let imagens = Array.isArray(p.imagens) ? p.imagens : p.imagens.split(',');
-                        %>
-                        <% imagens.forEach(img => { %>
-                            <img src="/images/<%= p.pasta_imagens %>/<%= img.trim() %>" alt="<%= p.nome %>">
-                        <% }) %>
+    <main class="my-purchase">
+        <h2>Minhas compras</h2>
+
+        <% if (compras.length === 0) { %>
+            <p class="empty">Sem compras registradas.</p>
+        <% } else { %>
+            <% compras.forEach(c => { %>
+                <% 
+                    // Garante que as imagens virem um array
+                    const imagens = Array.isArray(c.Produto.imagens)
+                        ? c.Produto.imagens
+                        : c.Produto.imagens.split(',');
+                %>
+                <div class="item">
+                    <img src="/images/<%= c.Produto.pasta_imagens %>/<%= imagens[0].trim() %>" alt="<%= c.Produto.nome %>">
+                    <div class="item-details">
+                        <h3><%= c.Produto.nome %></h3>
+                        <p>Preço: R$ <%= Number(c.Produto.valor).toFixed(2).replace(".", ",") %></p>
+                        <p>Tamanho: <%= c.tamanho %></p>
+                        <p>Quantidade: <%= c.quantidade %></p>
                     </div>
-                    <button class="prev">❮</button>
-                    <button class="next">❯</button>
-                </div><br>
-                <p><%= p.nome %></p>
-                <p class="old-price">R$<%= Number(p.preco_original).toFixed(2).replace(".", ",") %></p>
-                <strong><p>R$ <%= Number(p.preco_pix).toFixed(2).replace(".", ",") %> no Pix</p></strong>
-                <button class="buy" type="submit"><a href="/produto/<%= p.produtoID %>">Comprar</a></button>
-            </div>
-        <% }) %>
-    </section>
+                </div>
+            <% }) %>
+        <% } %>
+    </main>
 </body>
-</html> 
+</html>

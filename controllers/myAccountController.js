@@ -1,16 +1,25 @@
-const {Cliente} = require("../config/db").models
+const { Cliente } = require("../config/db").models
+const bcrypt = require("bcrypt");
 
 const editarCadastro = async (req, res) => {
+    const { id } = req.params;
+    const { nome, telefone, email, senha } = req.body;
+
+    if(!nome || !telefone || !email || !senha){
+        return res.send("Todos os campos são origatórios")
+    }
     try {
-        const {id} = req.params
-        const { nome, telefone, email, senha } = req.body;
-        
         const cliente = await Cliente.findByPk(id);
         if (!cliente) {
             return res.status(404).send('<h2>Cliente não encontrado.</h2>');
         }
+
+        // Nova senha criptografada
+        const saltRounds = 10;
+        const novaSenhaCriptografada = await bcrypt.hash(senha, saltRounds)
+
         await Cliente.update(
-            { nome, telefone, email, senha }, { where: { clienteID: id } }
+            { nome, telefone, email, senha: novaSenhaCriptografada }, { where: { clienteID: id } }
         )
         return res.redirect("/home")
     } catch (error) {
@@ -19,4 +28,4 @@ const editarCadastro = async (req, res) => {
     }
 }
 
-module.exports = {editarCadastro}
+module.exports = { editarCadastro }

@@ -19,19 +19,19 @@ module.exports = {
         allowNull: false
       },
       valor: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false
       },
       preco_original: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.STRING,
         allowNull: true
       },
       preco_pix: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.STRING,
         allowNull: false
       },
       preco_parcelado: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.STRING,
         allowNull: false
       },
       cor: {
