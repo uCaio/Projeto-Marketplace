@@ -5,74 +5,81 @@
     font-family: sans-serif;
 }
 
-#myAccount {
-    font-size: 30px;
-    margin-top: 80px;
-    text-align: center;
-    color: #000;
+/* From Uiverse.io by nathann09 */ 
+.form {
+  background-color: #fff;
+  display: block;
+  padding: 1rem;
+  max-width: 800px;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin: 160px auto;
 }
 
-.form-container {
-    width: 500px;
-    height: 450px;
-    margin: 0 auto;
-    margin-top: 15px;
-    padding: 2rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.label-container {
-    width: 300px;
-    margin: 05px 21px;
+.form-title {
+  font-size: 1.65rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
 }
 
 .input-container {
-    width: 400px;
-    height: 30px;
-    margin: 0 auto;
+  position: relative;
+  text-align: center;
 }
 
-input[type="text"] {
-    width: 400px;
-    height: 30px;
-    padding: 05px;
-    border-radius: 50px;
-    border: 1px solid;
+.input-container input, .form button {
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
 }
 
-input[type="password"] {
-    width: 400px;
-    height: 30px;
-    padding: 05px;
-    border-radius: 50px;
-    border: 1px solid;
+.input-container input {
+  background-color: #fff;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-input[type="date"] {
-    width: 400px;
-    height: 30px;
-    padding: 05px;
-    border-radius: 50px;
-    border: 1px solid;
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;     
+  margin-top: 20px;
 }
 
-
-.edit-button {
-    display: block;
-    width: 100px;
-    padding: 10px 10px;
-    margin: 15px auto;
-    background-color: #52c4db;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+.submit {
+  padding-top: 0.90rem;
+  padding-bottom: 0.90rem;
+  padding-left: 1.80rem;
+  padding-right: 1.80rem;
+  background-color: #52c4db;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.edit-button:hover {
-    background-color: #4199ab;
-    transition: 0.5s;
+.submit:hover{
+    background: #4199ab;
+}
+
+.signup-link {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.signup-link a {
+  text-decoration: none;
+  color: #52c4db;
 }

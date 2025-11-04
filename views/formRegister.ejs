@@ -18,54 +18,17 @@
     <nav id="nav-container">
         <header id="header"><a class="open-btn" onclick="toggleSidebar()" href="/home">Tênis Zone</a></header>
     </nav>
-
-    <h2 id="register">Cadastre-se</h2>
-    <form action="/cadastro" method="POST">
-        <div class="form-container">
-            <div class="label-container">
-                <label for="nome">Nome:<span class="required">*</span></label>
-            </div>
-            <div class="input-container">
-                <input type="text" name="nome" placeholder="Digite seu nome..." required>
-            </div>
-
-            <div class="label-container">
-                <label for="cpf">Cpf:<span class="required">*</span></label>
-            </div>
-            <div class="input-container">
-                <input type="text" name="cpf" placeholder="Digite seu cpf..." required>
-            </div>
-
-            <div class="label-container">
-                <label for="telefone">Telefone:<span class="required">*</span></label>
-            </div>
-            <div class="input-container">
-                <input type="text" name="telefone" placeholder="Digite seu telefone..." required>
-            </div>
-
-            <div class="label-container">
-                <label for="email">Email:<span class="required">*</span></label>
-            </div>
-            <div class="input-container">
-                <input type="text" name="email" placeholder="Digite seu email..." required>
-            </div>
-
-            <div class="label-container">
-                <label for="senha">Senha:<span class="required">*</span></label>
-            </div>
-            <div class="input-container">
-                <input type="password" name="senha" placeholder="Digite sua senha..." required>
-            </div>
-
-            <div class="label-container">
-                <label for="data_nascimento">Data de Nascimento:<span class="required">*</span></label>
-            </div>
-            <div class="input-container">
-                <input type="date" name="data_nascimento" placeholder="Digite sua data de nascimento..." required>
-            </div>
-
-            <button class="register-button">Cadastre-se</button>
+    <form class="form" action="/cadastro" method="POST">
+        <p class="form-title">Crie uma conta</p>
+        <div class="input-container">
+          <input type="text" placeholder="Nome..." name="nome" required>
+          <input type="text" placeholder="CPF..." name="cpf"  required>
+          <input type="text" placeholder="Telefone..." name="telefone" required >
+          <input type="date" placeholder="Data de Nascimento..."  name="data_nascimento" required >
+          <input type="email" placeholder="Email..." name="email" required>
+          <input type="password" placeholder="Senha..." name="senha" required>
         </div>
+        <button type="submit" class="submit">Entre</butto>
     </form>
 </body>
 

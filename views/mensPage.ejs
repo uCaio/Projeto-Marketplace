@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Loja</title>
+    <title>Tênis Masculino</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/myAccount.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/navBar.css'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/bootstrap.min.css'>
-    <script src='/javascripts/sideBar.js' defer></script>
-    <script src='/javascripts/bootstrap.bundle.min.js' defer></script>
+    <script src='main.js'></script>
 </head>
-
 <body>
     <nav id="nav-container">
         <header id="header"><a class="open-btn" onclick="toggleSidebar()">Tênis Zone</a></header>
         <ul class="nav-links">
             <% if (!cliente) { %>
                 <li><a href="/login"><i class="bi bi-person-circle"></i></a></li>
-             <% } else { %>
+            <% } else { %>
                 <li><a href="/carrinho/"><i class="bi bi-cart2"></i></a></li>
                 <li><a href="/minhaConta/<%= cliente.clienteID %>"><i class="bi bi-person-circle"></i></a></li>
             <% } %>
         </ul>
     </nav>
-
     <div class="sidebar" id="sidebar">
         <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
         <button class="close-btn" onclick="toggleSidebar()"><i class="bi bi-arrow-left-short"></i></button>
@@ -41,27 +34,35 @@
                 <li><a href="/minhasCompras">Minhas compras</a></li>
             <% } %>
         </ul>
+
         <% if (cliente) { %>
             <div class="container-links">
                 <li><a href="/logout" class="logout-button"><i class="bi bi-box-arrow-right"></i></a></li>
             </div>
         <% } %>
+
+        <section id="mens-products">
+            <% produto.forEach(p => { %>
+                <div class="product-container">
+                    <div class="slider-container">
+                        <div class="slider">
+                            <% 
+                                let imagens = Array.isArray(p.imagens) ? p.imagens : p.imagens.split(',');
+                            %>
+                            <% imagens.forEach(img => { %>
+                                <img src="/images/<%= p.pasta_imagens %>/<%= img.trim() %>" alt="<%= p.nome %>">
+                            <% }) %>
+                        </div>
+                        <button class="prev">❮</button>
+                        <button class="next">❯</button>
+                    </div><br>
+                    <p><%= p.nome %></p>
+                    <p class="old-price">R$<%= Number(p.preco_original).toFixed(2).replace(".", ",") %></p>
+                    <strong><p>R$ <%= Number(p.preco_pix).toFixed(2).replace(".", ",") %> no Pix</p></strong>
+                    <button class="buy" type="submit"><a href="/produto/<%= p.produtoID %>">Comprar</a></button>
+                </div>
+            <% }) %>
+        </section>
     </div>
-
-     <form class="form" action="/cadastro" method="POST">
-        <p class="form-title">Minha conta</p>
-        <div class="input-container">
-          <input type="text" placeholder="Nome..." name="nome" required value="<%= cliente.nome %>">
-          <input type="text" placeholder="CPF..." name="cpf" value="<%= cliente.cpf %>" disabled>
-          <input type="text" placeholder="Telefone..." name="telefone" required value="<%= cliente.telefone %>">
-          <input type="date" placeholder="Data de Nascimento..."  name="data_nascimento" required value="<%= cliente.data_nascimento.toISOString().substring(0, 10) %>" >
-          <input type="email" placeholder="Email..." name="email" required value="<%= cliente.email %>">
-          <input type="password" placeholder="Senha..." name="senha" required>
-        </div>
-        <div class="button-container">
-            <button type="submit" class="submit"><strong>Editar</strong></button>
-        </div>
-    </form>
 </body>
-
 </html>

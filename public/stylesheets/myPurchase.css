@@ -11,7 +11,6 @@
     padding: 100px;
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(16, 10, 10, 0.1);
 }
 
 .item{
@@ -20,8 +19,11 @@
     margin-bottom: 25px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(16, 10, 10, 0.1);
 }
 
 .item img {

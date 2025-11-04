@@ -6,10 +6,10 @@
   <title>Carrinho de Compras</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/shoppingCart.css">
   <link rel="stylesheet" href="/stylesheets/navBar.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
 
   <script src="/javascripts/bootstrap.bundle.min.js" defer></script>
   <script src="/javascripts/sideBar.js" defer></script>
@@ -31,7 +31,7 @@
 
  <div class="sidebar" id="sidebar">
         <a href="/home" class="home-button"><i class="bi bi-house"></i></a>
-        <button class="close-btn" onclick="toggleSidebar()">x</button>
+        <button class="close-btn" onclick="toggleSidebar()"><i class="bi bi-arrow-left-short"></i></button>
 
         <ul class="sidebar-links">
             <% if(!cliente){ %>

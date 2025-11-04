@@ -21,20 +21,24 @@
         <header id="header"><a class="open-btn" href="/home">Tênis Zone</a></header>
     </div>
     <h2 id="login">Login</h2>
-    <form action="/login" method="POST">
-        <div class="form-container">
-          <div class="coolinput">
-            <label for="input" class="text">Email:</label>
-            <input type="text" placeholder="Digite seu email..." name="email" class="input">
-          </div>
-          <div class="coolinput">
-            <label for="input" class="text">Senha:</label>
-            <input type="password" placeholder="Digite sua senha" name="senha" class="input">
-          </div>
-            <p class="link">Não possui conta? <strong><a href="/cadastro">Clique aqui</a></p></strong>
-            <button class="button-login">Login</button>
+    <!-- From Uiverse.io by nathann09 --> 
+    <form class="form" action="/login" method="POST">
+       <p class="form-title">Entre na sua conta</p>
+        <div class="input-container">
+          <input type="email" placeholder="Email..." name="email">
+          <span>
+          </span>
         </div>
-    </form>
+      <div class="input-container">
+          <input type="password" placeholder="Senha..." name="senha">
+      </div>
+      <button type="submit" class="submit">Entre</button>
+      <p class="signup-link">
+        Não possui conta?
+        <a href="/cadastro"><strong>Cadastre-se</strong></a>
+      </p>
+   </form>
+
 
     <% if (error && error.trim().length> 0) { %>
         <div class="alert-error" id="alert">

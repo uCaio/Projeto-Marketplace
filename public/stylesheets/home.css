@@ -110,6 +110,8 @@ a {
   font-weight: bold;
 }
 
+
+
 @media(max-width: 600px) {
   #nav-container {
     flex-direction: column;

@@ -1,24 +1,20 @@
-const session = require("express-session")
-const SequelizeStore = require("connect-session-sequelize")(session.Store)
-const { sequelize } = require("./db") 
+require('dotenv').config();
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const {sequelize } = require('./db'); // seu objeto sequelize configurado
 
-
-const sessionStore = new SequelizeStore({
-    db: sequelize,
-})
+const sessionStore = new SequelizeStore({ db: sequelize });
 
 const sessionMiddleware = session({
-    secret: "nodejsElegal",
-    resave: false,
-    saveUninitialized: false,
-    store: sessionStore,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24
-    }
+  secret: process.env.SESSION_SECRET || 'fallbackSecret',
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24
+  }
 });
 
-
-// Sincroniza a tabela de sessões no banco 
-sessionStore.sync()
+sessionStore.sync(); // cria a tabela de sessões (se necessário)
 
 module.exports = sessionMiddleware;
