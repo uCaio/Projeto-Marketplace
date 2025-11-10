@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
             produtoID: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false },
             nome: { type: DataTypes.STRING, allowNull: false },
             marca: { type: DataTypes.STRING, allowNull: false },
+            sexo: {type: DataTypes.STRING, allowNull: false},
             valor: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
             preco_original: { type: DataTypes.DECIMAL(10, 2), allowNull: true },
             preco_pix: { type: DataTypes.DECIMAL(10, 2), allowNull: true },
@@ -20,7 +21,7 @@ module.exports = (sequelize) => {
             cor: { type: DataTypes.STRING, allowNull: true },
             tamanhos: { type: DataTypes.STRING, allowNull: true }, 
             imagens:{type: DataTypes.STRING, allowNull: true},
-            pasta_imagens: { type: DataTypes.STRING, allowNull: true } 
+            pasta_imagens: { type: DataTypes.STRING, allowNull: true }
         },
         {
             sequelize,

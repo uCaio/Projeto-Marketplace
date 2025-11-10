@@ -33,11 +33,11 @@
 
         <ul class="sidebar-links">
             <% if(!cliente){ %>
-                <li><a href="#">Masculino</a></li>
-                <li><a href="#">Feminino</a></li>
+                <li><a href="/masculino">Masculino</a></li>
+                <li><a href="/feminino">Feminino</a></li>
             <% } else { %>
-                <li><a href="#">Masculino</a></li>
-                <li><a href="#">Feminino</a></li>
+                <li><a href="/masculino">Masculino</a></li>
+                <li><a href="/feminino">Feminino</a></li>
                 <li><a href="/minhasCompras">Minhas compras</a></li>
             <% } %>
         </ul>
@@ -48,15 +48,15 @@
         <% } %>
     </div>
 
-     <form class="form" action="/cadastro" method="POST">
+     <form class="form" action="/minhaConta/<%= cliente.clienteID %>?_method=PUT" method="POST">
         <p class="form-title">Minha conta</p>
         <div class="input-container">
-          <input type="text" placeholder="Nome..." name="nome" required value="<%= cliente.nome %>">
+          <input type="text" placeholder="Nome..." name="nome" value="<%= cliente.nome %>">
           <input type="text" placeholder="CPF..." name="cpf" value="<%= cliente.cpf %>" disabled>
-          <input type="text" placeholder="Telefone..." name="telefone" required value="<%= cliente.telefone %>">
-          <input type="date" placeholder="Data de Nascimento..."  name="data_nascimento" required value="<%= cliente.data_nascimento.toISOString().substring(0, 10) %>" >
-          <input type="email" placeholder="Email..." name="email" required value="<%= cliente.email %>">
-          <input type="password" placeholder="Senha..." name="senha" required>
+          <input type="text" placeholder="Telefone..." name="telefone" value="<%= cliente.telefone %>">
+          <input type="date" placeholder="Data de Nascimento..."  name="data_nascimento" value="<%= cliente.data_nascimento.toISOString().substring(0, 10) %>" >
+          <input type="email" placeholder="Email..." name="email" value="<%= cliente.email %>">
+          <input type="password" placeholder="Senha..." name="senha" >
         </div>
         <div class="button-container">
             <button type="submit" class="submit"><strong>Editar</strong></button>

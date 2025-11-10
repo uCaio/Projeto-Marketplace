@@ -1,7 +1,7 @@
 require('dotenv').config();
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const {sequelize } = require('./db'); // seu objeto sequelize configurado
+const {sequelize } = require('./db'); 
 
 const sessionStore = new SequelizeStore({ db: sequelize });
 

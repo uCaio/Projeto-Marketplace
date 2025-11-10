@@ -26,7 +26,10 @@ const myAccountRoutes = require('./routes/myAccountRoutes');
 const logOutRoutes = require('./routes/logOutRoutes');
 const productPageRoutes = require('./routes/productPageRoutes');
 const shoppingCartRoutes = require('./routes/shoppingCartRoutes');
-const myPurchaseRoutes = require('./routes/myPurchaseRoutes')
+const myPurchaseRoutes = require('./routes/myPurchaseRoutes');
+const mensPage = require('./routes/mensPageRoutes');
+const womensPage = require('./routes/womensPageRoutes');
+
 
 
 app.use('/', homeRoutes);
@@ -37,6 +40,8 @@ app.use('/', logOutRoutes);
 app.use('/', productPageRoutes);
 app.use('/', shoppingCartRoutes);
 app.use('/', myPurchaseRoutes);
+app.use('/', mensPage);
+app.use('/', womensPage)
 
 
 // View Engine

@@ -4,9 +4,16 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Tênis Masculino</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/mensPage.css'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/navBar.css'>
-    <script src='main.js'></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/bootstrap.min.css'>
+    
+    <script src='/javascripts/slider-images.js' defer></script>
+    <script src='/javascripts/sideBar.js' defer></script>
+    <script src='/javascripts/bootstrap.bundle.min.js' defer></script>
+
 </head>
 <body>
     <nav id="nav-container">
@@ -26,14 +33,15 @@
 
         <ul class="sidebar-links">
             <% if(!cliente){ %>
-                <li><a href="#">Masculino</a></li>
-                <li><a href="#">Feminino</a></li>
+                <li><a href="/masculino">Masculino</a></li>
+                <li><a href="/feminino">Feminino</a></li>
             <% } else { %>
-                <li><a href="#">Masculino</a></li>
-                <li><a href="#">Feminino</a></li>
+                <li><a href="/masculino">Masculino</a></li>
+                <li><a href="/feminino">Feminino</a></li>
                 <li><a href="/minhasCompras">Minhas compras</a></li>
             <% } %>
         </ul>
+    </div>
 
         <% if (cliente) { %>
             <div class="container-links">
