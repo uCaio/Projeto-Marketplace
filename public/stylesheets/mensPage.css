@@ -31,6 +31,11 @@
   text-align: center;  
 }
 
+.product-container:hover{
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
 .product-container p {
   margin: 5px 0; 
 }

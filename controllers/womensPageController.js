@@ -8,8 +8,8 @@ const exibirProdutosFemininos = async (req,res) => {
         if (req.session.clienteId) {
             cliente = await Cliente.findByPk(req.session.clienteId);
         }
-        const produto = await Produto.findAll({where: {sexo: 'Feminino'}});
-        res.render('womensPAge', {cliente, produto})
+        const produtos = await Produto.findAll({where: {sexo: 'Feminino'}});
+        res.render('womensPAge', {cliente, produtos})
     } catch (error) {
         console.log(error);
         return res.status(500).send("Erro ao carregar página.");

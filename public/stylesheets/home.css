@@ -31,6 +31,11 @@
   text-align: center;  
 }
 
+.product-container:hover{
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
 .product-container p {
   margin: 5px 0; 
 }
@@ -83,7 +88,7 @@
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 50%;
-  font-size: 14px;
+  font-size: 12px;
   transition: 0.5s;
 }
 
@@ -112,6 +117,20 @@ a {
   font-weight: bold;
 }
 
+
+.text-footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100px;
+  color: #fff;
+  text-align: center;
+  background-color: #52c4db;
+  border-top: 1px solid #ccc;
+  padding: 10px 10px;
+}
 
 
 @media(max-width: 600px) {

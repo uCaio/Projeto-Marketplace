@@ -60,8 +60,6 @@
                             <img src="/images/<%= p.pasta_imagens %>/<%= img.trim() %>" alt="<%= p.nome %>">
                         <% }) %>
                     </div>
-                    <button class="prev">❮</button>
-                    <button class="next">❯</button>
                 </div><br>
                 <p><%= p.nome %></p>
                 <p class="old-price">R$<%= Number(p.preco_original).toFixed(2).replace(".", ",") %></p>
@@ -70,5 +68,11 @@
             </div>
         <% }) %>
     </section>
+
+    <footer>
+        <div class="text-footer">
+            <strong>Tênis Zone @ 2025</strong>
+        </div>
+    </footer>
 </body>
 </html> 

@@ -50,6 +50,10 @@ async function pesquisacep(valor) {
       uf: dados.uf,
       ibge: dados.ibge
     });
+
+    // 🔹 Calcula automaticamente o frete após preencher os dados do CEP
+    calcularFreteAutomatico(cep);
+
   } catch (e) {
     limpaFormularioCep();
     console.error("Erro ao buscar CEP:", e);
@@ -75,4 +79,34 @@ function limpaFormularioCep() {
     uf: "",
     ibge: ""
   });
+}
+
+// 🔹 NOVA FUNÇÃO: chama o backend e atualiza o total com frete
+async function calcularFreteAutomatico(cep) {
+  try {
+    const response = await fetch('/carrinho/frete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cep })
+    });
+
+    const data = await response.json();
+
+    if (data.sucesso) {
+      let totalElem = document.getElementById('total-value');
+
+      if (!totalElem) {
+        totalElem = document.createElement('p');
+        totalElem.id = 'total-value';
+        document.getElementById('info-container').appendChild(totalElem);
+      }
+
+      totalElem.innerHTML = `
+        <strong>Total com Frete:</strong> R$ ${data.totalComFrete.replace('.', ',')}<br>
+        <small>(Frete: R$ ${data.valorFrete.replace('.', ',')})</small>
+      `;
+    }
+  } catch (err) {
+    console.error('Erro ao calcular frete automaticamente:', err);
+  }
 }

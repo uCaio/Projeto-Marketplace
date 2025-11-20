@@ -14,6 +14,7 @@
   <script src="/javascripts/bootstrap.bundle.min.js" defer></script>
   <script src="/javascripts/sideBar.js" defer></script>
   <script src="/javascripts/cep.js" defer></script>
+  <script src="/javascripts/update-quantity.js" defer></script>
 
 </head>
 </body>
@@ -71,31 +72,24 @@
             <p>Preço: R$ <%= Number(produto.preco).toFixed(2).replace(".", ",") %></p>
             <p>Tamanho: <%= produto.tamanho %></p>
 
-            <form method="POST" action="/carrinho/atualizar">
-              <input type="hidden" name="produtoId" value="<%= produto.id %>">
+            <div class="quantity-box">
               <label for="quantidade">Quantidade:</label>
-              <input
-                type="number"
-                name="novaQuantidade"
-                value="<%= produto.quantidade %>"
-                min="1"
-              />
-              <button type="submit">Atualizar</button>
-            </form>
+              <input type="number" class="quantidade-input" data-produto-id="<%= produto.id %>" value="<%= produto.quantidade %>" min="1"/>
+            </div>
           </div>
 
           <div id="remove">
             <form method="POST" action="/carrinho/remover/<%= produto.id %>/<%= produto.tamanho %>">
-              <button type="submit" class="remove-btn">X</button>
+              <button type="submit" class="remove-btn"><strong>X</strong></button>
             </form>
           </div>
         </div>
       <% }) %>
 
       <div class="cart-summary">
-        <form method="POST" action="/carrinho/frete" id="box-cep">
-          <strong><p>Calcular Frete:</p></strong>
-
+        <div class="cep-container">
+          <h3>Frete</h3><br>
+           <form method="POST" action="/carrinho/frete" id="box-cep">
           <label for="cep">CEP:</label>
           <input
             name="cep"
@@ -105,7 +99,6 @@
             class="summary-inputs"
             onblur="pesquisacep(this.value);"
           /><br />
-
           <label>Rua:
             <input name="rua" type="text" id="rua" class="summary-inputs">
           </label><br />
@@ -120,10 +113,8 @@
 
           <input name="uf" type="hidden" id="uf" class="summary-inputs">
           <input name="ibge" type="hidden" id="ibge" class="summary-inputs">
-
-          <button type="submit">Calcular</button> 
         </form>
-
+        </div>
         <div id="info-container">
           <form method="POST" action="/carrinho/limpar">
             <button type="submit" class="clear-btn">Limpar Carrinho</button>

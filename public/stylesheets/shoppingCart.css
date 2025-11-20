@@ -10,9 +10,9 @@ i:hover{
   transition: 0.3s;
 }
 
-
 .cart-container {
     max-width: 1100px;
+    height: auto;
     margin: 40px auto;
     padding: 100px;
     background-color: white;
@@ -36,6 +36,11 @@ h2 {
     padding-top: 10px;
 }
 
+.cep-container{
+    width: 300px;
+
+}
+
 .cart-item img {
     width: 120px;
     height: auto;
@@ -56,9 +61,9 @@ h2 {
 }
 
 input[type="number"] {
-    width: 60px;
     padding: 5px;
     margin: 5px 0;
+    border: none;
 }
 
 button {
@@ -80,20 +85,22 @@ button:hover {
 
 .remove-btn {
     width: 40px;
-    background-color: #dc3545;
+    background-color: #fff;
     float: right;
+    color: #dc3545;
+    font-size: 20px;
 }
 
 .remove-btn:hover {
-    background-color: #b02a37;
+    background-color: #fff;
 }
 
 .clear-btn {
-    background-color: #ffc107;
+    background-color: #ff0000;
 }
 
 .clear-btn:hover {
-    background-color: #e0a800;
+    background-color: #6d0505;
 }
 
 .cart-summary {
@@ -117,7 +124,7 @@ button:hover {
 }
 
 #box-cep {
-    max-width: 190px;
+    width: 190px;
     max-height: auto;
 }
 

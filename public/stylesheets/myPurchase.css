@@ -51,3 +51,7 @@ h2 {
 .item-details p {
     margin: 5px 0;
 }
+
+.empty{
+    text-align: center;
+}

@@ -15,7 +15,11 @@ const mostraCompras = async(req, res)=>{
             },
         });
 
-        const compras = cliente ?.Compras || [];
+        if(!cliente){
+            return res.redirect('/login')
+        }
+
+        const compras = cliente?.Compras || [];
 
         res.render('myPurchase', {cliente, compras})
     } catch (error) {

@@ -53,7 +53,6 @@
         <% } else { %>
             <% compras.forEach(c => { %>
                 <% 
-                    // Garante que as imagens virem um array
                     const imagens = Array.isArray(c.Produto.imagens)
                         ? c.Produto.imagens
                         : c.Produto.imagens.split(',');
